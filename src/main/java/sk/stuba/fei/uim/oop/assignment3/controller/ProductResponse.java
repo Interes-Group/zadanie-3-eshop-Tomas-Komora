@@ -1,15 +1,16 @@
-package sk.stuba.fei.uim.oop.assignment3;
+package sk.stuba.fei.uim.oop.assignment3.controller;
 
 import lombok.Getter;
+import sk.stuba.fei.uim.oop.assignment3.model.Products;
 
 @Getter
 public class ProductResponse {
     private Long id;
     private String name;
     private String description;
-    private int amount;
+    private Long amount;
     private String unit;
-    private int price;
+    private Long price;
 
     public ProductResponse(Products p) {
         this.id = p.getId();
@@ -19,4 +20,5 @@ public class ProductResponse {
         this.unit=p.getUnit();
         this.price=p.getPrice();
     }
+
 }

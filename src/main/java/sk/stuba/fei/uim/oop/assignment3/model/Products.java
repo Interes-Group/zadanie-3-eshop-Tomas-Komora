@@ -1,4 +1,4 @@
-package sk.stuba.fei.uim.oop.assignment3;
+package sk.stuba.fei.uim.oop.assignment3.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -16,12 +16,11 @@ public class Products {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String name;
     private String description;
-    private int amount;
+    private Long amount;
     private String unit;
-    private int price;
+    private Long price;
 
 
 }
