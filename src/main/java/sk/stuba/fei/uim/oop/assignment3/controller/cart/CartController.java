@@ -4,13 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sk.stuba.fei.uim.oop.assignment3.controller.products.ProductRequest;
-import sk.stuba.fei.uim.oop.assignment3.controller.products.ProductResponse;
 import sk.stuba.fei.uim.oop.assignment3.exceptions.NotExists;
 import sk.stuba.fei.uim.oop.assignment3.model.cart.Cart;
-import sk.stuba.fei.uim.oop.assignment3.model.product.Products;
 import sk.stuba.fei.uim.oop.assignment3.service.cart.ICartService;
-import sk.stuba.fei.uim.oop.assignment3.service.product.IProductService;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,8 +22,8 @@ public class CartController {
 
     @PostMapping
     @ResponseBody
-    public ResponseEntity<CartResponse> addCart(@RequestBody CartRequest request) {
-        Cart cart = service.create(request);
+    public ResponseEntity<CartResponse> addCart() {
+        Cart cart = service.create();
         return new ResponseEntity<>(new CartResponse(cart),HttpStatus.CREATED);
     }
     @GetMapping()
@@ -52,9 +49,8 @@ public class CartController {
             service.deleteCartById(id);
             return new ResponseEntity<>(HttpStatus.OK);
         }catch(NotExists notExists){
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
 
 }

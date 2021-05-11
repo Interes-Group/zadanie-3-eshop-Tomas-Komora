@@ -3,9 +3,12 @@ package sk.stuba.fei.uim.oop.assignment3.service.cart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sk.stuba.fei.uim.oop.assignment3.controller.cart.CartRequest;
+import sk.stuba.fei.uim.oop.assignment3.controller.cart.CartResponse;
 import sk.stuba.fei.uim.oop.assignment3.exceptions.NotExists;
 import sk.stuba.fei.uim.oop.assignment3.model.cart.Cart;
 import sk.stuba.fei.uim.oop.assignment3.model.cart.CartRepository;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,10 +29,10 @@ public class CartService implements ICartService {
     }
 
     @Override
-    public Cart create(CartRequest request) {
+    public Cart create() {
         Cart newCart = new Cart();
-        newCart.setProductsInCarts(request.getShoppingList());
-        newCart.setPayed(request.isPayed());
+        newCart.setProductsInCarts(new ArrayList<>());
+        newCart.setPayed(false);
         return this.repository.save(newCart);
     }
 
