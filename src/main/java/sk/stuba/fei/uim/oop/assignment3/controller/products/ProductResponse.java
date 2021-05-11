@@ -1,7 +1,7 @@
-package sk.stuba.fei.uim.oop.assignment3.controller;
+package sk.stuba.fei.uim.oop.assignment3.controller.products;
 
 import lombok.Getter;
-import sk.stuba.fei.uim.oop.assignment3.model.Products;
+import sk.stuba.fei.uim.oop.assignment3.model.product.Products;
 
 @Getter
 public class ProductResponse {

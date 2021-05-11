@@ -1,8 +1,7 @@
-package sk.stuba.fei.uim.oop.assignment3.model;
+package sk.stuba.fei.uim.oop.assignment3.model.product;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import sk.stuba.fei.uim.oop.assignment3.model.Products;
 
 import java.util.List;
 

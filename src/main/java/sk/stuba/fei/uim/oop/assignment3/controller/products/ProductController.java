@@ -1,12 +1,12 @@
-package sk.stuba.fei.uim.oop.assignment3.controller;
+package sk.stuba.fei.uim.oop.assignment3.controller.products;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sk.stuba.fei.uim.oop.assignment3.exceptions.NotExists;
-import sk.stuba.fei.uim.oop.assignment3.model.Products;
-import sk.stuba.fei.uim.oop.assignment3.service.IProductService;
+import sk.stuba.fei.uim.oop.assignment3.model.product.Products;
+import sk.stuba.fei.uim.oop.assignment3.service.product.IProductService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,8 +26,9 @@ public class ProductController {
 
     @PostMapping
     @ResponseBody
-    public ProductResponse addAnimal(@RequestBody ProductRequest request) {
-        return new ProductResponse(this.service.create(request));
+    public ResponseEntity<ProductResponse> addProduct(@RequestBody ProductRequest request) {
+        Products products =service.create(request);
+        return new ResponseEntity<>(new ProductResponse(products),HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
@@ -69,6 +70,19 @@ public class ProductController {
             Long amountValue = amount.getAmount();
             Products products= service.setAmount(id , amountValue);
             return new ResponseEntity<>(new AmountResponse(products), HttpStatus.OK);
+        }catch(NotExists notExists){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/{id}")
+    @ResponseBody
+    public ResponseEntity<ProductResponse> updateProduct(@PathVariable("id") Long id, @RequestBody UpdateProductRequest updateProductResponse){
+        try{
+            String name = updateProductResponse.getName();
+            String description = updateProductResponse.getDescription();
+            Products products=service.update(id,name, description);
+            return new ResponseEntity<>(new ProductResponse(products),HttpStatus.OK);
         }catch(NotExists notExists){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

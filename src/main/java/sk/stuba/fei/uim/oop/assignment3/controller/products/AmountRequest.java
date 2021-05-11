@@ -1,4 +1,4 @@
-package sk.stuba.fei.uim.oop.assignment3.controller;
+package sk.stuba.fei.uim.oop.assignment3.controller.products;
 
 
 import lombok.Getter;

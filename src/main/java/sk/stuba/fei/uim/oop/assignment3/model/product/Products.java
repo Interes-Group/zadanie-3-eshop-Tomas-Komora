@@ -1,4 +1,4 @@
-package sk.stuba.fei.uim.oop.assignment3.model;
+package sk.stuba.fei.uim.oop.assignment3.model.product;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +21,7 @@ public class Products {
     private Long amount;
     private String unit;
     private Long price;
+
 
 
 }

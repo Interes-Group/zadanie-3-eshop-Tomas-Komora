@@ -1,10 +1,9 @@
-package sk.stuba.fei.uim.oop.assignment3.service;
+package sk.stuba.fei.uim.oop.assignment3.service.product;
 
-import org.aspectj.weaver.ast.Not;
-import org.springframework.http.HttpStatus;
-import sk.stuba.fei.uim.oop.assignment3.controller.ProductRequest;
+import sk.stuba.fei.uim.oop.assignment3.controller.products.ProductRequest;
+import sk.stuba.fei.uim.oop.assignment3.controller.products.UpdateProductResponse;
 import sk.stuba.fei.uim.oop.assignment3.exceptions.NotExists;
-import sk.stuba.fei.uim.oop.assignment3.model.Products;
+import sk.stuba.fei.uim.oop.assignment3.model.product.Products;
 
 import java.util.List;
 
@@ -14,4 +13,5 @@ public interface IProductService {
     Products getProductById(Long id) throws NotExists;
     void deleteProductById(Long id) throws NotExists;
     Products setAmount(Long id, Long amountRequest) throws  NotExists;
+    Products update(Long id, String name, String description) throws NotExists;
 }

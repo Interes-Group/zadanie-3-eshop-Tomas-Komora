@@ -1,13 +1,13 @@
-package sk.stuba.fei.uim.oop.assignment3.service;
+package sk.stuba.fei.uim.oop.assignment3.service.product;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import sk.stuba.fei.uim.oop.assignment3.controller.AmountRequest;
+import sk.stuba.fei.uim.oop.assignment3.controller.products.UpdateProductResponse;
 import sk.stuba.fei.uim.oop.assignment3.exceptions.NotExists;
-import sk.stuba.fei.uim.oop.assignment3.model.ProductRepository;
-import sk.stuba.fei.uim.oop.assignment3.controller.ProductRequest;
-import sk.stuba.fei.uim.oop.assignment3.model.Products;
+import sk.stuba.fei.uim.oop.assignment3.model.product.ProductRepository;
+import sk.stuba.fei.uim.oop.assignment3.controller.products.ProductRequest;
+import sk.stuba.fei.uim.oop.assignment3.model.product.Products;
+import sk.stuba.fei.uim.oop.assignment3.service.product.IProductService;
 
 import java.util.List;
 import java.util.Optional;
@@ -65,4 +65,27 @@ public class ProductService implements IProductService {
             return products.get();
         }
     }
+
+    public Products update(Long id,  String name, String description) throws NotExists{
+        Optional<Products> products= repository.findById(id);
+        if(products.isEmpty()){
+            throw new NotExists();
+        }else {
+            if(description==null && name==null){
+            }
+            else if(name==null){
+                products.get().setDescription(description);
+            }else if(description==null){
+                products.get().setName(name);
+            }
+            else {
+                products.get().setName(name);
+                products.get().setDescription(description);
+            }
+            return products.get();
+
+        }
+
+    }
+
 }
