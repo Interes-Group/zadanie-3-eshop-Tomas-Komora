@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import sk.stuba.fei.uim.oop.assignment3.controller.products.amount.AmountRequest;
+import sk.stuba.fei.uim.oop.assignment3.controller.products.amount.AmountResponse;
+import sk.stuba.fei.uim.oop.assignment3.controller.products.update.UpdateProductRequest;
 import sk.stuba.fei.uim.oop.assignment3.exceptions.NotExists;
 import sk.stuba.fei.uim.oop.assignment3.model.product.Products;
 import sk.stuba.fei.uim.oop.assignment3.service.product.IProductService;
@@ -77,10 +80,10 @@ public class ProductController {
 
     @PutMapping("/{id}")
     @ResponseBody
-    public ResponseEntity<ProductResponse> updateProduct(@PathVariable("id") Long id, @RequestBody UpdateProductRequest updateProductResponse){
+    public ResponseEntity<ProductResponse> updateProduct(@PathVariable("id") Long id, @RequestBody UpdateProductRequest updateProductRequest){
         try{
-            String name = updateProductResponse.getName();
-            String description = updateProductResponse.getDescription();
+            String name = updateProductRequest.getName();
+            String description = updateProductRequest.getDescription();
             Products products=service.update(id,name, description);
             return new ResponseEntity<>(new ProductResponse(products),HttpStatus.OK);
         }catch(NotExists notExists){

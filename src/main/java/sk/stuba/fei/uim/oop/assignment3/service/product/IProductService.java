@@ -1,7 +1,6 @@
 package sk.stuba.fei.uim.oop.assignment3.service.product;
 
 import sk.stuba.fei.uim.oop.assignment3.controller.products.ProductRequest;
-import sk.stuba.fei.uim.oop.assignment3.controller.products.UpdateProductResponse;
 import sk.stuba.fei.uim.oop.assignment3.exceptions.NotExists;
 import sk.stuba.fei.uim.oop.assignment3.model.product.Products;
 

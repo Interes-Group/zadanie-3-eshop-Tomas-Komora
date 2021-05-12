@@ -2,12 +2,10 @@ package sk.stuba.fei.uim.oop.assignment3.service.product;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sk.stuba.fei.uim.oop.assignment3.controller.products.UpdateProductResponse;
 import sk.stuba.fei.uim.oop.assignment3.exceptions.NotExists;
 import sk.stuba.fei.uim.oop.assignment3.model.product.ProductRepository;
 import sk.stuba.fei.uim.oop.assignment3.controller.products.ProductRequest;
 import sk.stuba.fei.uim.oop.assignment3.model.product.Products;
-import sk.stuba.fei.uim.oop.assignment3.service.product.IProductService;
 
 import java.util.List;
 import java.util.Optional;
@@ -38,6 +36,7 @@ public class ProductService implements IProductService {
         return this.repository.save(newProduct);
     }
 
+    @Override
     public Products getProductById(Long id) throws NotExists {
         Optional<Products> products= repository.findById(id);
         if(products.isEmpty()){
@@ -47,6 +46,7 @@ public class ProductService implements IProductService {
         }
     }
 
+    @Override
     public void deleteProductById(Long id) throws NotExists {
         Optional<Products> products= repository.findById(id);
         if(products.isEmpty()){
@@ -56,6 +56,7 @@ public class ProductService implements IProductService {
         }
     }
 
+    @Override
     public Products setAmount(Long id, Long amountRequest)throws NotExists{
         Optional<Products> products= repository.findById(id);
         if(products.isEmpty()){
@@ -66,6 +67,7 @@ public class ProductService implements IProductService {
         }
     }
 
+    @Override
     public Products update(Long id,  String name, String description) throws NotExists{
         Optional<Products> products= repository.findById(id);
         if(products.isEmpty()){
